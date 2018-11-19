@@ -80,6 +80,11 @@ Karena memanfaatkan kedua webservice tersebut, akan ada perubahan pada aplikasi 
 
 - Halaman search-book dan search-result pada tugas 1 digabung menjadi satu halaman search yang menggunakan AngularJS. Proses pencarian buku diambil dari webservice buku menggunakan **AJAX**. Hasil pencarian akan ditampilkan pada halaman search menggunakan AngularJS, setelah mendapatkan respon dari webservice. Ubah juga tampilan saat melakukan pencarian untuk memberitahu jika aplikasi sedang melakukan pencarian atau tidak ditemukan hasil.
 
+    Berikut adalah komponen pada AngularJS yang harus digunkan pada aplikasi Anda:
+    - Data binding (ng-model directives)
+    - Controllers (ng-controllers)
+    - ng-repeat, untuk menampilkan list
+
 - Aplikasi Anda menggunakan `access token` untuk menentukan active user. Mekanisme pembentukan dan validasi access token dapat dilihat di bagian *Mekanisme access token*.
 
 #### Mekanisme access token
