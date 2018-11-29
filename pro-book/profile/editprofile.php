@@ -36,6 +36,10 @@
                     <label for="username">Name</label>
                     <input id="edit-profile__name" type="text" name="name" value="<?php echo $users[0]->name?>">
                 </div>
+                <div class="edit-profile__edit-card edit-profile-row">
+                    <label for="username">Card Number</label>
+                    <input id="edit-profile__name" type="number" name="card_number">
+                </div>
                 <div class="edit-profile__edit-address edit-profile-row">
                     <label for="username">Address</label>
                     <textarea id="edit-profile__address" name="address" rows="5"><?php echo $users[0]->address?></textarea>

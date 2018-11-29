@@ -46,6 +46,10 @@
           <input type="password" name="password2">
         </div>
         <div class="register__input">
+          <label for="password">Card Number</label>
+          <input type="number" name="card_number">
+        </div>
+        <div class="register__input">
           <label for="password">Address</label>
           <textarea name="address" resize rows="5"></textarea>
         </div>

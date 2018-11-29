@@ -51,6 +51,17 @@
                     <p id="profile__email"><?php echo $users[0]->email?></p>
                 </div>
             </div>
+            <div class="profile__card profile__row">
+                <div class="profile__left">
+                    <div class="profile__icon">
+                        <img src="../assets/img/card.png"/>
+                    </div>
+                    <p> Card Number</p>
+                </div>
+                <div class="profile__right">
+                    <p id="profile__card"></p>
+                </div>
+            </div>
             <div class="profile__address profile__row">
                 <div class="profile__left">
                     <div class="profile__icon">
