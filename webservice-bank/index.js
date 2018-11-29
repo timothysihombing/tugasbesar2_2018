@@ -14,6 +14,17 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
+app.get("/customers/:id", (req, res) => {
+  connection.query(
+    `SELECT * FROM customers WHERE id = ${req.params.id}`,
+    (err, rows, fields) => {
+      if (err) return res.status(500).send("Error when fetch customer");
+
+      res.send(rows[0]);
+    }
+  );
+});
+
 app.post("/customers", (req, res) => {
   connection.query(
     `SELECT * FROM customers WHERE card_number = ${req.body.card_number}`,
