@@ -3,6 +3,8 @@ const mysql = require("mysql");
 
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -12,16 +14,33 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
-app.get("/", (req, res) => {
-  res.send("Hello world!");
-});
-
-app.post("/customer", (req, res) => {
+app.post("/customers", (req, res) => {
   // Check is card number valid (no one has it)
-  // Add new customer to database
+  connection.query(
+    `SELECT * FROM customers WHERE card_number = ${req.body.card_number}`,
+    (err, rows, fields) => {
+      if (err) return res.status(500).send("Error when check card number");
+
+      if (rows.length == 1)
+        return res.status(400).send("Card number already exists");
+
+      // Add new customer to database
+      connection.query(
+        `
+        INSERT INTO customers (name, card_number) 
+        VALUES ('${req.body.name}', '${req.body.card_number}')
+      `,
+        (err, rows, fields) => {
+          if (err) return res.status(500).send("Error when add new customer");
+
+          res.send("User added");
+        }
+      );
+    }
+  );
 });
 
-app.post("/transaction", (req, res) => {
+app.post("/transactions", (req, res) => {
   // Check if card number of sender and receiver is exist
   // Check if amount is <= sender balance
   // Decrease sender balance by amount
