@@ -25,6 +25,33 @@ app.get("/customers/:id", (req, res) => {
   );
 });
 
+app.put("/customers", (req, res) => {
+  connection.query(
+    `SELECT * FROM customers WHERE card_number = ${req.body.card_number}`,
+    (err, rows, fields) => {
+      if (err) return res.status(500).send("Error when check card number");
+
+      // Check is card number valid (no one has it) beside us
+      if (rows.length == 1 && rows[0].id !== req.body.id)
+        return res.status(400).send("Card number already exists");
+
+      connection.query(
+        `
+          UPDATE customers
+          SET name = '${req.body.name}',
+          card_number = '${req.body.card_number}'
+          WHERE id = ${req.body.id}
+        `,
+        (err, rows, fields) => {
+          if (err) return res.status(500).send("Error when update customer");
+
+          res.send("Successfully added");
+        }
+      );
+    }
+  );
+});
+
 app.post("/customers", (req, res) => {
   connection.query(
     `SELECT * FROM customers WHERE card_number = ${req.body.card_number}`,
