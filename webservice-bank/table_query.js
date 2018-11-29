@@ -24,7 +24,7 @@ connection.query(`
       sender_cardnumber VARCHAR(20) NOT NULL,
       receiver_cardnumber VARCHAR(20) NOT NULL,
       amount INT NOT NULL CHECK (amount >= 0),
-      timestamp DATETIME NOT NULL
+      timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
     )
 `);
 

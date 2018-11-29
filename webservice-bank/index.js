@@ -15,12 +15,12 @@ const connection = mysql.createConnection({
 connection.connect();
 
 app.post("/customers", (req, res) => {
-  // Check is card number valid (no one has it)
   connection.query(
     `SELECT * FROM customers WHERE card_number = ${req.body.card_number}`,
     (err, rows, fields) => {
       if (err) return res.status(500).send("Error when check card number");
 
+      // Check is card number valid (no one has it)
       if (rows.length == 1)
         return res.status(400).send("Card number already exists");
 
@@ -41,10 +41,61 @@ app.post("/customers", (req, res) => {
 });
 
 app.post("/transactions", (req, res) => {
-  // Check if card number of sender and receiver is exist
   // Check if amount is <= sender balance
-  // Decrease sender balance by amount
-  // Add new transaction to database
+  connection.query(
+    `
+      SELECT balance FROM customers
+      WHERE card_number = '${req.body.sender_cardnumber}'
+    `,
+    (err, rows, fields) => {
+      if (err) return res.status(500).send("Error when check customer balance");
+
+      if (rows[0].balance < req.body.amount)
+        res.status(400).send("Sender balance is not enough");
+
+      // Decrease sender balance by amount
+      connection.query(
+        `
+          UPDATE customers SET balance = ${rows[0].balance - req.body.amount}
+          WHERE card_number = ${req.body.sender_cardnumber}
+        `,
+        (err, rows, fields) => {
+          if (err)
+            return res.status(500).send("Error when decrease sender balance");
+
+          // Increase receiver balance by amount
+          connection.query(
+            `
+            UPDATE customers SET balance = balance + ${req.body.amount}
+            WHERE card_number = ${req.body.receiver_cardnumber}
+          `,
+            (err, rows, fields) => {
+              if (err)
+                return res.status(500).send("Error increase receiver balance");
+
+              // Add new transaction to database
+              connection.query(
+                `
+                INSERT INTO transactions (sender_cardnumber, receiver_cardnumber, amount)
+                VALUES (
+                  ${req.body.sender_cardnumber}, 
+                  ${req.body.receiver_cardnumber}, 
+                  ${req.body.amount}
+                )
+              `,
+                (err, rows, fields) => {
+                  if (err)
+                    return res.status(500).send("Error add new transaction");
+
+                  res.send("Transaction success");
+                }
+              );
+            }
+          );
+        }
+      );
+    }
+  );
 });
 
 app.listen(3000, () => {
