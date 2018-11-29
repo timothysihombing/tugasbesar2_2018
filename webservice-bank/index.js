@@ -52,6 +52,21 @@ app.put("/customers", (req, res) => {
   );
 });
 
+app.post("/customers/:card", (req, res) => {
+  connection.query(
+    `SELECT * FROM customers WHERE card_number = ${req.params.card}`,
+    (err, rows, fields) => {
+      if (err) return res.status(500).send("Error when fetch card");
+
+      if (rows.length == 1) {
+        res.send("not available");
+      } else {
+        res.send("available");
+      }
+    }
+  );
+});
+
 app.post("/customers", (req, res) => {
   connection.query(
     `SELECT * FROM customers WHERE card_number = ${req.body.card_number}`,
