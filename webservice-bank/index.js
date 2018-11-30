@@ -30,15 +30,14 @@ app.put("/customers", (req, res) => {
       if (err) return res.status(500).send("Error when check card number");
 
       // Check is card number valid (no one has it) beside us
-      if (rows.length == 1 && rows[0].id !== req.body.id)
+      if (rows.length == 1 && rows[0].username !== req.body.username)
         return res.status(400).send("Card number already exists");
 
       connection.query(
         `
           UPDATE customers
-          SET username = '${req.body.username}',
-          card_number = '${req.body.card_number}'
-          WHERE id = ${req.body.id}
+          SET card_number = '${req.body.card_number}'
+          WHERE username = ${req.body.username}
         `,
         (err, rows, fields) => {
           if (err) return res.status(500).send("Error when update customer");
