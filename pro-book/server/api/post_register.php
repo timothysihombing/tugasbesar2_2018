@@ -25,7 +25,7 @@
     $user = $link->query($get_user_query);
   
     // Jika query gagal atau tidak ada username yang sesuai
-    if (!mysqli_num_rows($user) || !$user) {
+    if (mysqli_num_rows($user) == 0) {
       header("Location: /login");
     };
   
@@ -35,6 +35,10 @@
     }
 
     $access_token = random_bytes(8) . "-" . sha1($username . $userID) . "-" . (time() + (60 * 68 * 24 * 30));
+
+    // Tambahkan token
+    $insert_token_query = "UPDATE users SET token = '{$access_token}' WHERE user_id = {$userID}";
+    $result = $link->query($insert_token_query);
 
     setcookie("id", $userID, time() + 3600, '/');
     setcookie("username", $username, time() + 3600, '/');
