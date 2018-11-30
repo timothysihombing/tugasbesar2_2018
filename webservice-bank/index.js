@@ -12,9 +12,9 @@ const connection = mysql.createConnection(credentials);
 
 connection.connect();
 
-app.get("/customers/:id", (req, res) => {
+app.get("/customers/:username", (req, res) => {
   connection.query(
-    `SELECT * FROM customers WHERE id = ${req.params.id}`,
+    `SELECT * FROM customers WHERE username = '${req.params.username}'`,
     (err, rows, fields) => {
       if (err) return res.status(500).send("Error when fetch customer");
 
