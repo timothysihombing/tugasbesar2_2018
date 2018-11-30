@@ -7,7 +7,6 @@ const credentials = require('./credentials.js');
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use(express.urlencoded({ extended: true }));
 
 const connection = mysql.createConnection(credentials);
 
@@ -68,9 +67,11 @@ app.post("/customers/:card", (req, res) => {
 
 app.post("/customers", (req, res) => {
   connection.query(
-    `SELECT * FROM customers WHERE card_number = ${req.body.card_number}`,
+    `SELECT * FROM customers WHERE card_number = '${req.body.card_number}'`,
     (err, rows, fields) => {
-      if (err) return res.status(500).send("Error when check card number");
+      if (err) {
+        return res.status(500).send("Error when check card number");
+      } 
 
       // Check is card number valid (no one has it)
       if (rows.length == 1)
