@@ -25,7 +25,7 @@
     $user = $link->query($get_user_query);
   
     // Jika query gagal atau tidak ada username yang sesuai
-    if (!mysqli_num_rows($user) || !$user) {
+    if (mysqli_num_rows($user) == 0) {
       header("Location: /login");
     };
   
