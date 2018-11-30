@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Oct 24, 2018 at 04:31 PM
--- Server version: 5.7.23-0ubuntu0.18.04.1
--- PHP Version: 7.2.10-0ubuntu0.18.04.1
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 30 Nov 2018 pada 10.33
+-- Versi server: 10.1.34-MariaDB
+-- Versi PHP: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `books`
+-- Struktur dari tabel `books`
 --
 
 CREATE TABLE `books` (
@@ -35,17 +37,17 @@ CREATE TABLE `books` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `books`
+-- Dumping data untuk tabel `books`
 --
 
 INSERT INTO `books` (`book_id`, `title`, `author`, `image`, `synopsis`) VALUES
-(1, 'nota hidup', 'siapa', 'https://vignette.wikia.nocookie.net/naruto/images/c/cb/%C3%8Dcone_Death_Note.png/revision/latest?cb=', 'dbfvdfbv bvadv uav;bkv dan blkjdsjvvkvoro'),
+(1, 'Nota Hidup', 'Ilham Wahabi GX', 'http://pngimg.com/uploads/book/book_PNG2113.png', 'Buku yang penuh dengan harapan dan pencerahan.'),
 (2, 'buku apa', 'si eta', 'http://3.bp.blogspot.com/-hZhqHcfBKSg/TpxKA-8ffKI/AAAAAAAACY4/4pfiHDHr-58/s1600/a.jpg', 'bkjvndfv  nvbjdfv a ajvadmdmvmdmvmmvdmvdmmdvdvvdvndndv');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orders`
+-- Struktur dari tabel `orders`
 --
 
 CREATE TABLE `orders` (
@@ -59,17 +61,18 @@ CREATE TABLE `orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `orders`
+-- Dumping data untuk tabel `orders`
 --
 
 INSERT INTO `orders` (`order_id`, `user_id`, `book_id`, `rating`, `comment`, `jumlah`, `time`) VALUES
-(1, 1, 1, 4, 'sdavbdv ajvadv djvamvnfvf sdasdvk', 2, '2018-10-22 08:44:44'),
-(2, 2, 2, -1, '', 3, '2018-10-22 08:48:29');
+(1, 1, 1, 5, 'Nice', 2, '2018-10-26 13:26:47'),
+(2, 2, 2, -1, '', 3, '2018-10-22 08:48:29'),
+(26, 10, 1, 0, '', 1, '2018-10-26 15:30:16');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -80,31 +83,43 @@ CREATE TABLE `users` (
   `password` varchar(150) NOT NULL,
   `address` text NOT NULL,
   `phone` varchar(15) NOT NULL,
-  `image` varchar(50) NOT NULL
+  `image` varchar(50) NOT NULL,
+  `token` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`user_id`, `username`, `name`, `email`, `password`, `address`, `phone`, `image`) VALUES
-(1, 'abi1', 'ilham wahabi', 'abi@gmail.com', '$2y$10$Ms9HJSRNY2Facguw.zIdU.wGT5HoHEg1bsCVbOmzqpxpeD902z1B6', 'di suajjfdbvldfjvcbnc jvnkf, jv', '082361876116', '../images/querybaru.png'),
-(2, 'hamdi1', 'hamdi', 'hamdi@gmail.com', '$2y$10$Ms9HJSRNY2Facguw.zIdU.wGT5HoHEg1bsCVbOmzqpxpeD902z1B6', 'idbhaljb nma  coinvj jddsnnd', '082361876117', '../images/querybaru.png'),
-(3, 'upi1', 'upi', 'upi@gmail.com', '$2y$10$Ms9HJSRNY2Facguw.zIdU.wGT5HoHEg1bsCVbOmzqpxpeD902z1B6', 'dhjsa hbnndd nd  ejfecnnce  c en cen cen c', '082361876118', '../images/querybaru.png'),
-(4, 'hamdi2', 'Hamdi A Z', 'hamdi@hamdi.com', '$2y$10$Ms9HJSRNY2Facguw.zIdU.wGT5HoHEg1bsCVbOmzqpxpeD902z1B6', 'Jl. Cisitu Baru Dalam no. 73 A', '082361876115', '../images/querybaru.png');
+INSERT INTO `users` (`user_id`, `username`, `name`, `email`, `password`, `address`, `phone`, `image`, `token`) VALUES
+(1, 'abi', 'ilham wahabi', 'abi@gmail.com', '$2y$10$Ms9HJSRNY2Facguw.zIdU.wGT5HoHEg1bsCVbOmzqpxpeD902z1B6', 'di suajjfdbvldfjvcbnc jvnkf, jv', '082361876116', '../images/9.jpg', ''),
+(2, 'hamdi1', 'hamdi', 'hamdi@gmail.com', '$2y$10$Ms9HJSRNY2Facguw.zIdU.wGT5HoHEg1bsCVbOmzqpxpeD902z1B6', 'idbhaljb nma  coinvj jddsnnd', '082361876117', '../images/querybaru.png', ''),
+(3, 'upi1', 'upi', 'upi@gmail.com', '$2y$10$Ms9HJSRNY2Facguw.zIdU.wGT5HoHEg1bsCVbOmzqpxpeD902z1B6', 'dhjsa hbnndd nd  ejfecnnce  c en cen cen c', '082361876118', '../images/querybaru.png', ''),
+(4, 'hamdi2', 'Hamdi A Z', 'hamdi@hamdi.com', '$2y$10$Ms9HJSRNY2Facguw.zIdU.wGT5HoHEg1bsCVbOmzqpxpeD902z1B6', 'Jl. Cisitu Baru Dalam no. 73 A', '082361876115', '../images/querybaru.png', ''),
+(9, 'ilhamwahabigx', 'Ilham Wahabi GX', 'wahabiputra@gmail.com', '$2y$10$87FbnYle3Ps2FapG2pQKOu/O6DdLHtg4YeVPq8OUazayGvg9noou.', 'Sadang Luhur 12 Sekeloa, Coblong', '081224263696', '../assets/images/9.jpg', ''),
+(10, 'ilhamwahabi', 'Ilham Wahabi', 'wahabi@gmail.com', '$2y$10$MuY/mnWn3VCOeyiDQgBlce6kJ9oKSeQifgRK5NB9y5yq1.n0aCN7G', 'Sadang Luhur 12\r\nSekeloa, Coblong', '081224263696', '../assets/images/10.jpeg', ''),
+(27, 'gx', 'gx', 'gx@gmail.com', '$2y$10$hzCWBtTmsGo2Q1L2R0rRZ.v4nc56yknjzKPihRUJtKq5t8tubfXYq', 'gx', '081224263696', '', ''),
+(28, 'bro', 'bro', 'bro@gmail.com', '$2y$10$US491bbqpS6xiDdgLqaNHOUDfH6lvkFWTKzXWmPOZ.jFp.u6yNcqu', 'asd', '81224263696', '', ''),
+(29, 'asd', 'asd', 'asd@gmail.com', '$2y$10$rWAmoZDlZl/8sXhxmCW2aOkU3inw9Y9yOmPdrDtpnOfjlYod4Rt7W', 'asdf', '81224263696', '', ''),
+(30, 'zxc', 'zxc', 'zxc@mail.com', '$2y$10$mGrnDF7cov3hemxpym2q0eCgWzPusLBHVBhQarbTsI5jH0zjiKf4K', 'zxc', '81224263696', '', ''),
+(31, 'kimbel', 'kimbek', 'kimbek@gmail.com', '$2y$10$n0wZyLbNX9k4nluxMj0SfO4kgHUWR3kvQJY8gP6HauCPKZnpkRAH6', 'kimbek', '81224263696', '', ''),
+(32, 'a', 'a', 'a@mail.com', '$2y$10$dZaQTB42wtDqDwtM.1Uiu.UdjBezRGNvUJpeoPqbg0kKP6yl6aIBC', 'a', '81224263696', '', ''),
+(34, 'anj', 'anj', 'anj@gmail.com', '$2y$10$n4reSIy.KKM57UlwBSqOWOnLwIXQ5Ny44mSOXacdsQEf/K6bL.VXi', 'Sadang Luhur 12\r\nSekeloa, Coblong', '81224263696', '', ''),
+(35, 'ok', 'ok', 'ok@ok.com', '$2y$10$7y4oAnE7uflzggHM60iFU.fSf.x6visoYv8OFrcE3n8APrpwWfbDu', 'ok', '81224263696', '', ''),
+(36, 'hg', 'hg', 'hg@mail.com', '$2y$10$Xf0Li4Jlf4fZZDqxmNwdduMr5I5/eWdUruF/rhh.G6iUlxEWMlYW6', 'hg', '81224263696', '', '');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `books`
+-- Indeks untuk tabel `books`
 --
 ALTER TABLE `books`
   ADD PRIMARY KEY (`book_id`);
 
 --
--- Indexes for table `orders`
+-- Indeks untuk tabel `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_id`),
@@ -112,40 +127,44 @@ ALTER TABLE `orders`
   ADD KEY `book_id` (`book_id`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `books`
+-- AUTO_INCREMENT untuk tabel `books`
 --
 ALTER TABLE `books`
   MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT for table `orders`
+-- AUTO_INCREMENT untuk tabel `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `orders`
+-- Ketidakleluasaan untuk tabel `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
   ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `books` (`book_id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
