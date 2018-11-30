@@ -6,13 +6,9 @@ const connection = mysql.createConnection(credentials);
 connection.connect();
 
 connection.query(`
-  CREATE DATABASE IF NOT EXISTS ${credentials.database}
-`);
-
-connection.query(`
     CREATE TABLE customers (
       id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
-      name VARCHAR(50) NOT NULL, 
+      username VARCHAR(50) NOT NULL, 
       card_number VARCHAR(20) NOT NULL, 
       balance DOUBLE(12, 3) NOT NULL DEFAULT 0 CHECK (balance >= 0)
     )

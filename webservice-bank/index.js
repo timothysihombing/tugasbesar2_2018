@@ -36,7 +36,7 @@ app.put("/customers", (req, res) => {
       connection.query(
         `
           UPDATE customers
-          SET name = '${req.body.name}',
+          SET username = '${req.body.username}',
           card_number = '${req.body.card_number}'
           WHERE id = ${req.body.id}
         `,
@@ -80,8 +80,8 @@ app.post("/customers", (req, res) => {
       // Add new customer to database
       connection.query(
         `
-        INSERT INTO customers (name, card_number) 
-        VALUES ('${req.body.name}', '${req.body.card_number}')
+        INSERT INTO customers (username, card_number) 
+        VALUES ('${req.body.username}', '${req.body.card_number}')
       `,
         (err, rows, fields) => {
           if (err) return res.status(500).send("Error when add new customer");
