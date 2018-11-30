@@ -36,6 +36,10 @@
 
     $access_token = random_bytes(8) . "-" . sha1($username . $userID) . "-" . (time() + (60 * 68 * 24 * 30));
 
+    // Tambahkan token
+    $insert_token_query = "UPDATE users SET token = '{$access_token}' WHERE user_id = {$userID}";
+    $result = $link->query($insert_token_query);
+
     setcookie("id", $userID, time() + 3600, '/');
     setcookie("username", $username, time() + 3600, '/');
     setcookie("accesstoken", $access_token, time() + 3600, '/');

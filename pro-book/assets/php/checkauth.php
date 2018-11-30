@@ -14,7 +14,7 @@
   $accesstoken = explode("-", $_COOKIE["accesstoken"]);
 
   // Jika expiry time accesstoken sudah habis, maka dipaksa logout
-  if ((time() >= $accesstoken[2]) && time() >= strtotime($accesstoken[2])) {
+  if (time() > $accesstoken[2]) {
     header("Location: /assets/php/logout.php");
   }
 
