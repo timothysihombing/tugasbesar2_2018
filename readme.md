@@ -4,9 +4,26 @@ Melakukan *upgrade* Website toko buku online pada Tugas 1 dengan mengaplikasikan
 
 ## Penjelasan
 - Basis data dari sistem yang Anda buat, yaitu basis data aplkasi pro-book, webservice bank, dan webservice buku.
+Probook = Menggunakan database MySQL dengan 3 tabel (books, orders, dan users)
+di tabel books kami menyimpan book_id, title, author, image, dan synopsis
+di tabel orders kami menyimpan order_id, user_id, book_id, rating, comment, jumlah, time
+di tabel users kami menyimpan user_id, username, name, email, password, address, phone, image, token
+
+Webservice Bank = Menggunakan database MySQL dengan 2 tabel (customers, transactions)
+di tabel customers kami menyimpan id, username, card_number, dan balance
+di tabel transactions kami menyimpan id, sender_cardnumber, receiver_cardnumber, amount, timestamp
+
+Webservice Buku = Menggunakan database MySQL dengan authors, books, categories, orders
+
 - Konsep *shared session* dengan menggunakan REST.
+Protokol REST menggunakan konsep stateless sehingga server tidak menyimpan informasi mengenai client session.
+
 - Mekanisme pembangkitan token dan expiry time pada aplikasi Anda.
+Saat pengguna sukses melakukan login dan register, kami membangkitkan token dengan ketentuan 8 string awal adalah string random kemudian hasil hashing dari username dan userId kemudian expiry time pengguna.
+
 - Kelebihan dan kelemahan dari arsitektur aplikasi tugas ini, dibandingkan dengan aplikasi monolitik (login, CRUD DB, dll jadi dalam satu aplikasi)
+Kelebihan: Memudahkan pembagian tugas dan sumber daya
+Kelemahan: Sistem yang berjalan lebih banyak
 
 ### Skenario
 
@@ -22,8 +39,11 @@ Melakukan *upgrade* Website toko buku online pada Tugas 1 dengan mengaplikasikan
 10. Notifikasi muncul menandakan status pembelian, berhasil atau gagal.
 
 REST :
-1. Validasi nomor kartu : 1351xxxx
-2. ...
+1. Penambahan field nomor kartu di register : 13516141
+1. Validasi nomor kartu : 13516141
+1. Penambahan nasabah baru : 13516141
+1. Menampilkan nomor kartu di profile pengguna : 13516141
+1. Mengubah nomor kartu di edit profile pengguna : 13516141
 
 SOAP :
 1. searchBook : 13516090
@@ -43,12 +63,3 @@ Bonus :
 1. Pembangkitan token HTOP/TOTP : 
 2. Validasi token : 
 3. ...
-
-## About
-
-Asisten IF3110 2018
-
-Audry | Erick | Holy | Kevin J. | Tasya | Veren | Vincent H.
-
-Dosen : Yudistira Dwi Wardhana | Riza Satria Perdana | Muhammad Zuhri Catur Candra
-
