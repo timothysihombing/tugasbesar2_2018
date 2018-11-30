@@ -17,7 +17,11 @@
 <body>
   <main class="register">
     <h1 class="register__title">REGISTER</h1>
-    <form class="register__form" name="myform" action="../server/api/post_register.php" onsubmit="return validateRegisterForm()" method="post">
+    <form 
+      class="register__form" name="myform" 
+      action="../server/api/post_register.php" 
+      onsubmit="return validateRegisterForm()" method="post"
+    >
       <div class="register__field">
         <div class="register__input">
           <label for="name">Name</label>

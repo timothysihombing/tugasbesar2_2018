@@ -17,7 +17,11 @@
         <div class="edit-profile__title">
             <h1 class="orange">Edit Profile</h1>
         </div>
-        <form class="edit-profile__form" id="edit-profile__form" method="POST" action="post_users.php" enctype="multipart/form-data" onsubmit="return validateRegisterForm()">
+        <form 
+            class="edit-profile__form" id="edit-profile__form" 
+            method="POST" action="post_users.php" enctype="multipart/form-data" 
+            onsubmit="return validateRegisterForm('<?php echo $users[0]->username ?>')"
+        >
             <div class="edit-profile__edit-image">
                 <div class="edit-profile__image">
                     <img src="<?php echo $users[0]->image?>"/>
@@ -38,7 +42,7 @@
                 </div>
                 <div class="edit-profile__edit-card edit-profile-row">
                     <label for="username">Card Number</label>
-                    <input id="edit-profile__name" type="number" name="card_number">
+                    <input id="profile__card" type="number" name="card_number" onkeyup="validateCardNumberAjax('<?php echo $users[0]->username ?>')">
                 </div>
                 <div class="edit-profile__edit-address edit-profile-row">
                     <label for="username">Address</label>
@@ -57,5 +61,18 @@
     </div>
     <script src="../assets/js/validation.js"></script>
     <script src="../profile/index.js"></script>
+    <script>
+        function getUserCardNumber(username) {
+            fetch(`http://localhost:3000/customers/${username}`)
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res)
+                    document.getElementById('profile__card').value = res.card_number
+                })
+                .catch(err => console.log(err))
+        }
+
+        getUserCardNumber('<?php echo $users[0]->username ?>')
+    </script>
 </body>
 </html>

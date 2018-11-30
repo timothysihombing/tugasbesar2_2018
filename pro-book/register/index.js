@@ -30,10 +30,26 @@ function validateRegisterForm() {
     alerts += validatePhone(form["phone"].value);
 
     if (alerts.length == 0) {
-        return true;
+        addCustomer()
+        return true
     }
     alert(alerts);
     return false;
+}
+
+function addCustomer() {
+    var form = document.forms["myform"];
+
+    fetch('http://localhost:3000/customers', {
+        method: 'post',
+        body: JSON.stringify({
+            username: form["username"].value,
+            card_number: form["card_number"].value
+        }),
+        headers: new Headers({'content-type': 'application/json'})
+    })
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
 }
 
 function validateUsernameAjax() {

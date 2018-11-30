@@ -24,7 +24,9 @@
                 </div>
             </div>
             <div class="profile__edit">
-                <a href="/profile/editprofile.php"><img src="../assets/img/pencil.png" href="/profile/editprofile.php"/></a>                
+                <a href="/profile/editprofile.php">
+                    <img src="../assets/img/pencil.png" href="/profile/editprofile.php"/>
+                </a>                
             </div>
         </div>
         <div class="profile__info">
@@ -56,7 +58,7 @@
                     <div class="profile__icon">
                         <img src="../assets/img/card.png"/>
                     </div>
-                    <p> Card Number</p>
+                    <p>Card Number</p>
                 </div>
                 <div class="profile__right">
                     <p id="profile__card"></p>
@@ -89,5 +91,8 @@
     </div>
     <script src="../assets/js/validation.js"></script>
     <script src="../profile/index.js"></script>
+    <script>
+        getUserCardNumber('<?php echo $users[0]->username ?>')
+    </script>
 </body>
 </html>

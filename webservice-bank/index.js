@@ -37,7 +37,7 @@ app.put("/customers", (req, res) => {
         `
           UPDATE customers
           SET card_number = '${req.body.card_number}'
-          WHERE username = ${req.body.username}
+          WHERE username = '${req.body.username}'
         `,
         (err, rows, fields) => {
           if (err) return res.status(500).send("Error when update customer");
