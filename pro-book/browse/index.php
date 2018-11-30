@@ -13,32 +13,22 @@
   <?php
     require('../assets/php/header.php'); 
     require('../server/api/get_average_rating.php');
-
-    //$books = getBooks();
-    //$books_total = count($books);
   ?>
 
   <div class="search">
-    {{x}}
-    <!-- {{$books[1]->id}} -->
-    <!-- <h1 class="search__title orange">Search Book</h1> -->
-    <form 
-      class="search__form" id="search__form" ng-submit='search()'
-    >
-
+    <form class="search__form" id="search__form" ng-submit='search()'>
       <div class="search__form-row">
         <input 
           class="search__form-input" id="search__form-input" 
           type="text" name="search" placeholder="Input search terms..."
           ng-model='searchvalue'
         > 
-        
       </div>
       <div class="search__form-row">
         <button class="search__form-button hover_lightBlue button_up">Search</button>
       </div>
 
-      <div class="search-result">
+      <div class="search-result" id="search-result">
           <div class="search-result__header">
             <h1 class="search-result__title orange">Search Result</h1>
             <h1 class="search-result__found">Found {{books.length}} result(s)</h1>
@@ -64,26 +54,6 @@
               </button>
             </div>
         </div>
-          <!-- <div ng-repeat = "x in books" class="searchResult" id="searchresult">
-            <div class="searchResultTop container">
-                <div class ="searchResultDesc">
-                    <div class ="searchResultTitle">
-                      {{x['title']}}
-                    </div>
-                    <div class ="searchResultAuthor">
-                      <p id='descOrder' class ="authors" ng-repeat="author in x['authors']">
-                          {{author}}
-                      </p>
-                    </div>
-                    
-                    <div class="searchResultDesc">
-                      <p id='descOrder'>
-                        {{x['description']}}
-                      </p>
-                    </div>
-                </div>
-            </div> -->
-
       </div>
   <script src="../assets/js/browse/angular.min.js"></script>
   <script src="../assets/js/browse/search.js"></script>
