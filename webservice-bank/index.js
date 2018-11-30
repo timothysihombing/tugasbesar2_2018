@@ -49,6 +49,21 @@ app.put("/customers", (req, res) => {
   );
 });
 
+app.put("/customers/check", (req, res) => {
+  connection.query(
+    `SELECT * FROM customers WHERE card_number = ${req.body.card_number}`,
+    (err, rows, fields) => {
+      if (err) return res.status(500).send("Error when check card number");
+
+      // Check is card number valid (no one has it) beside us
+      if (rows.length == 1 && rows[0].username !== req.body.username)
+        return res.send("0");
+
+      res.send("1")
+    }
+  );
+});
+
 app.post("/customers/:card", (req, res) => {
   connection.query(
     `SELECT * FROM customers WHERE card_number = ${req.params.card}`,
