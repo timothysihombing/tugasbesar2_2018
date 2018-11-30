@@ -39,8 +39,11 @@ Kelemahan: Sistem yang berjalan lebih banyak
 10. Notifikasi muncul menandakan status pembelian, berhasil atau gagal.
 
 REST :
-1. Validasi nomor kartu : 1351xxxx
-2. ...
+1. Penambahan field nomor kartu di register : 13516141
+1. Validasi nomor kartu : 13516141
+1. Penambahan nasabah baru : 13516141
+1. Menampilkan nomor kartu di profile pengguna : 13516141
+1. Mengubah nomor kartu di edit profile pengguna : 13516141
 
 SOAP :
 1. Add Produce : 1351xxxx
