@@ -31,7 +31,7 @@
       <div class='detail__book'>
         <div class='detail__book-text'>
           <h1 class='detail__book-title orange'>{$book->title}</h1>
-          <h4 class='detail__book-author'>{$book->author}</h4>
+          <h4 class='detail__book-author'>{$book->authors[0]}</h4>
           <p class='detail__book-desc'>{$book->description}</p>
         </div>
         <div class='detail__book-imgrating'>
@@ -69,23 +69,16 @@
     <div class="detail__reviews">
       <h1 class="detail__reviews-title blue-dark">Reviews</h1>
       <?php
-        $rating = number_format($book->rating, 1);
+         // $rating = number_format($book->rating, 1);
         echo "
           <div class='detail__review'>
-            <div class='detail__img-reviewer'>
-              <img src='{$book->imageLinks}' />
-            </div>
             <div class='detail__text-reviewer'>
               <div class='detail__username-reviewer'> 
-                <h1>@{$book->username}</h1>
               </div>
-              <div class='detail__comment-reviewer'>
-                <p>{$book->comment}</p> 
+              <div class='detail__comment-reviewer'> 
               </div>
             </div>
             <div class='detail__rating-reviewer'>
-              <p class='detail__rating-reviewer-star'>★</p>
-              <p class='detail__rating-reviewer-number'>{$rating} / 5.0</p>
             </div>
           </div>
         ";
