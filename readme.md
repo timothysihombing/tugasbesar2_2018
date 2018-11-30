@@ -46,10 +46,17 @@ REST :
 1. Menambahkan transaksi baru
 
 SOAP :
-1. Add Produce : 1351xxxx
-2. Fungsionalitas Y : 1351xxxx
-3. ...
+1. searchBook : 13516090
+2. recommendBook : 13516153
+3. detailBook : 13516090
+4. interface : 13516153
+5. Book : 13516153
+6. updateDatabase : 13516090
+7. buyBook : 13516090
 
 Perubahan Web app :
 1. Menampilkan nomor kartu di profile pengguna : 13516141
 1. Penambahan field nomor kartu di register : 13516141
+1. Halaman Search : 13516153
+2. Halaman Recommend : 13516090
+3. Halaman Detail Buku : 13516090

@@ -14,12 +14,12 @@ var app = angular.module('recommendbook',[]);
 app.controller('recommendcon', function($scope, $http){
   console.log("PATEN");
   $scope.searchvalue = null;
-  $scope.recommend = function(){
+  $scope.search = function(){
     //showResult();
     $scope.books = null;
     value = $scope.searchvalue.replace(/\s+/g, '+');
     //showLoader();
-    url = "../server/api/get_recommend.php";
+    url = "../server/api/get_recommend.php?search=" + value;
     console.log("test");
     $http.get(url)
       .then(function (response) {
