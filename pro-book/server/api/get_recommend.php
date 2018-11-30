@@ -6,8 +6,8 @@
   $wsdl ="http://localhost:7000/ws/bookservice?wsdl";
   $client = new SoapClient($wsdl, array('trace'=>1));
   
-  $category = $_REQUEST["search"];
-  $id = "-56xtgEACAAJ";
+  $category = split(", ", $_REQUEST["search"]);
+  // $id = "-56xtgEACAAJ";
   $categories = array("gore", "tps", "mature");
   $request_param = $category;
   //specific service call

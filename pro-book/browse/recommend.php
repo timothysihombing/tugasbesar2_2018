@@ -17,7 +17,7 @@
 
   <div class="search">
     <h1 class="search__title orange">Recommend Book</h1>
-    <form class="search__form" id="search__form" ng-submit='recommend()'>
+    <form class="search__form" id="search__form" ng-submit='search()'>
       <div class="search__form-row">
         <input 
           class="search__form-input" id="search__form-input" 
