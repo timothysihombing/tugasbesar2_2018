@@ -28,6 +28,7 @@ app.controller('searchcon', function($scope, $http){
         console.log($scope.books);
         if ($scope.books == null) {
           console.log("MASOKKKK PAK EKOOO!!!");
+          console.log(value)
           //showNoResult();
         }
         $scope.books = response.data;
