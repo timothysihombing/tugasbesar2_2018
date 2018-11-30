@@ -16,6 +16,7 @@
   ?>
 
   <div class="search">
+    <h1 class="search__title orange">Search Book</h1>
     <form class="search__form" id="search__form" ng-submit='search()'>
       <div class="search__form-row">
         <input 
