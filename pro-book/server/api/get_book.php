@@ -1,10 +1,23 @@
 <?php
 
   function getBook($book_id) {
-    require(dirname(__FILE__)."/../server.php");
+    $wsdl ="http://localhost:7000/ws/bookservice?wsdl";
+    $client = new SoapClient($wsdl, array('trace'=>1));
+    
+    $categories = array("gore", "tps", "mature");
+    $request_param = $book_id;
+    //specific service call
+    try {
+      $response = $client->detailBook($request_param);
+      // $response = $client->recommendBook($request_param);
+      $book = json_decode($response);
 
-    $get_book_query = "SELECT * FROM books WHERE book_id = {$book_id}";
-    return $link->query($get_book_query);
+      return $book;
+    } 
+    catch (Exception $e) { 
+      echo "<h2>Exception Error!</h2>"; 
+      echo $e->getMessage(); 
+    }
   }
 
 ?>

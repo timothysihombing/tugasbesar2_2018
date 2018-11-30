@@ -1,10 +1,23 @@
 <?php
   // Mendapatkan kumpulan buku saat dilakukan pencarian
   function getBooks() {
-    require(dirname(__FILE__)."/../server.php");
-    $search_query = $_GET["search"];
+    $wsdl ="http://localhost:7000/ws/bookservice?wsdl";
+    $client = new SoapClient($wsdl, array('trace'=>1));
+    
+    $title = $_GET["search"];
+    $id = "-56xtgEACAAJ";
+    $categories = array("gore", "tps", "mature");
+    $request_param = $title;
+    //specific service call
+    try {
+      $response = $client->searchBook($request_param);
+      $books = json_decode($response);
 
-    $get_books_query = "SELECT * FROM books WHERE title LIKE '%{$search_query}%'";
-    return $link->query($get_books_query);
+      return $books;
+    } 
+    catch (Exception $e) { 
+      echo "<h2>Exception Error!</h2>"; 
+      echo $e->getMessage(); 
+    }
   }
 ?>

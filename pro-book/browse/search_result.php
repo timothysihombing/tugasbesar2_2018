@@ -14,7 +14,7 @@
     require('../server/api/get_average_rating.php');
 
     $books = getBooks();
-    $books_total = mysqli_num_rows($books);
+    $books_total = count($books);
   ?>
 
   <div class="search-result">
@@ -24,28 +24,34 @@
     </div>
     <div class="search-result__items">
       <?php 
-        while ($row = $books->fetch_assoc()) {
-          $total_rating;
-          $average_rating;
-          $avg = getAverageRating($row['book_id']);
-          while ($rtg = $avg->fetch_assoc()) {
-            $total_rating = $rtg['total_rating'];
-            $average_rating = number_format($rtg['avg_rating'], 1);
-          }
+        for ($i=0; $i<5; $i++) {
+          // $total_rating;
+          // $average_rating;
+          // $avg = getAverageRating($row['book_id']);
+          // while ($rtg = $avg->fetch_assoc()) {
+          //   $total_rating = $rtg['total_rating'];
+          //   $average_rating = number_format($rtg['avg_rating'], 1);
+          // } {$average_rating}/5.0 ({$total_rating} votes)
           echo "
-            <div id='item-{$row['book_id']}' class='search-result__item'>
+            <div id='item-{$books[$i]->id}' class='search-result__item'>
               <div class='search-result__item-content'>
-                <img src='{$row['image']}' alt='item' class='search-result__item-img'>
+                <img src='{$books[$i]->imageUrl}' alt='item' class='search-result__item-img'>
                 <div class='search-result__item-body'>
-                  <h3 class='search-result__item-title orange'>{$row['title']}</h3>
-                  <h5 class='search-result__item-subtitle'>
-                    {$row['author']} - {$average_rating}/5.0 ({$total_rating} votes)
-                  </h5>
-                  <p class='search-result__item-desc'>{$row['synopsis']}</p>
+                  <h3 class='search-result__item-title orange'>{$books[$i]->title}</h3>
+                  <h5 class='search-result__item-subtitle'>";
+                  foreach ($books[$i]->authors as $author) {
+                    echo "{$author}. ";
+                  }
+                  echo "</h5>
+                  <p class='search-result__item-desc'>";
+                  foreach ($books[$i]->categories as $category) {
+                    echo "{$category}. ";
+                  }
+                  echo "</p>
                 </div>
               </div>
               <button class='search-result__detail hover_lightBlue button_up'>
-                <a href='/browse/book_details.php?book={$row['book_id']}'>Detail</a>
+                <a href='/browse/book_details.php?book={$books[$i]->id}'>Detail</a>
               </button>
             </div>
           ";
