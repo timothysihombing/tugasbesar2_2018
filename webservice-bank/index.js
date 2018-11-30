@@ -1,10 +1,12 @@
 const express = require("express");
 const mysql = require("mysql");
+var cors = require('cors');
 
 const credentials = require('./credentials.js');
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 const connection = mysql.createConnection(credentials);
@@ -56,9 +58,9 @@ app.post("/customers/:card", (req, res) => {
       if (err) return res.status(500).send("Error when fetch card");
 
       if (rows.length == 1) {
-        res.send("not available");
+        res.send("0");
       } else {
-        res.send("available");
+        res.send("1");
       }
     }
   );

@@ -46,6 +46,13 @@
           <input type="password" name="password2">
         </div>
         <div class="register__input">
+          <label for="card_number">Card Number</label>
+          <div class="register__check">
+            <input type="number" name="card_number" id="card_number" onkeyup="validateCardNumberAjax()">
+            <div id="status_card_number"><img src="../assets/img/checklist-orange.png"/></div>
+          </div>
+        </div>
+        <div class="register__input">
           <label for="password">Address</label>
           <textarea name="address" resize rows="5"></textarea>
         </div>

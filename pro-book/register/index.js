@@ -1,5 +1,6 @@
-var isUsernameValid = false;
-var isEmailValid = false;
+var isUsernameValid = true
+var isEmailValid = true;
+var isCardNumberValid = true;
 
 function validateRegisterForm() {
     var alerts = "";
@@ -12,12 +13,18 @@ function validateRegisterForm() {
     else {
         alerts += "*Username is not valid\n";
     }
+
     if (isEmailValid) {
         alerts += validateEmail(form["email"].value);
     }
     else {
         alerts += "*Email is not valid\n";
     }
+
+    if (!isCardNumberValid) {
+        alerts += "*Card number is not valid\n";
+    }
+
     alerts += validatePassword(form["password"].value, form["password2"].value);
     alerts += validateAddress(form["address"].value);
     alerts += validatePhone(form["phone"].value);
@@ -59,8 +66,8 @@ function validateUsernameAjax() {
 }
 
 function validateEmailAjax() {
-    var email = document.getElementById("email");
-    var status = document.getElementById("status2");
+    let email = document.getElementById("email");
+    let status = document.getElementById("status2");
 
     if (email.value.length != 0) {
         fetch('/server/api/post_email.php', {
@@ -85,5 +92,27 @@ function validateEmailAjax() {
     else {
         status.innerHTML = "<img src=\"../assets/img/close.png\"/>";
         isEmailValid = false;
+    }
+}
+
+function validateCardNumberAjax() {
+    let cardNumber = document.getElementById("card_number");
+    let status = document.getElementById("status_card_number");
+
+    if (cardNumber.value.length > 0) {
+        fetch(`http://localhost:3000/customers/${cardNumber.value}`, {
+            method: 'post',
+        })
+            .then(res => res.json())
+            .then(statusNumber => {
+                if (statusNumber == 0) {                
+                    status.innerHTML = "<img src=\"../assets/img/close.png\"/>";
+                    isCardNumberValid = false;
+                } else {
+                    status.innerHTML = "<img src=\"../assets/img/checklist-orange.png\"/>";
+                    isCardNumberValid = true;
+                }
+            })
+            .catch(err => console.error(err))
     }
 }
