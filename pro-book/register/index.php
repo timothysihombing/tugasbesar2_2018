@@ -47,7 +47,7 @@
         </div>
         <div class="register__input">
           <label for="password">Card Number</label>
-          <input type="number" name="card_number">
+          <input id="card_number" type="number" name="card_number">
         </div>
         <div class="register__input">
           <label for="password">Address</label>

@@ -1,16 +1,13 @@
 const express = require("express");
 const mysql = require("mysql");
 
+const credentials = require('./credentials.js');
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "password",
-  database: "bank"
-});
+const connection = mysql.createConnection(credentials);
 
 connection.connect();
 
