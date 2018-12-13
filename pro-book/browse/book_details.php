@@ -66,11 +66,13 @@
       for($i = 1; $i <= 5; $i++) { echo "<option value='{$i}'>{$i}</option>"; }
     ?>
 
-    <?php echo "
+    <?php 
+      $price = $book->price;
+      echo "
           </select>
         </div>
         <div class='detail__order-button'>
-<button class='blue-medium-background hover_lightBlue button_up' onclick='orderBook({$_COOKIE['id']}, '<{$book_id}')'>Order</button>
+          <button class='blue-medium-background hover_lightBlue button_up' onclick='orderBook({$_COOKIE['id']}, '<{$book_id}', {$price})'>Order</button>
         </div>
       </div>";
         }

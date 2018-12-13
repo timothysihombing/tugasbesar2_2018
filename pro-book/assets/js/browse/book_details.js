@@ -2,10 +2,7 @@
 var browse_tab = document.getElementById("browse_tab");
 browse_tab.className = "header_app_content orange-background hover_lightOrange";
 
-function orderBook(user_id, book_id) {
-  // console.log(user_id)
-  // console.log(book_id)
-  // console.log('hei')
+function orderBook(user_id, book_id, book_price) {
   const jumlah = document.getElementById('total-order').value
 
   // Ambil nomor kartu si pemesan
@@ -21,7 +18,7 @@ function orderBook(user_id, book_id) {
           body: JSON.stringify({
             sender_cardnumber: res.card_number,
             receiver_cardnumber: 13516141,
-            amount: 5000,
+            amount: parseFloat(book_price) * parseInt(jumlah),
           })
         })
           .then(res => { 
