@@ -31,14 +31,14 @@
           <label for="username">Username</label>
           <div class="register__check">
             <input type="text" name="username" id="username" onkeyup="validateUsernameAjax()">
-            <div id="status"><img src="../assets/img/checklist-orange.png"/></div>
+            <div id="status"><img src="../assets/img/close.png"/></div>
           </div>
         </div>
         <div class="register__input">
           <label for="email">Email</label>
           <div class="register__check">
             <input name="email" id="email" onkeyup="validateEmailAjax()">
-            <div id="status2"><img src="../assets/img/checklist-orange.png"/></div>            
+            <div id="status2"><img src="../assets/img/close.png"/></div>            
           </div>
         </div>
         <div class="register__input">
@@ -53,7 +53,7 @@
           <label for="card_number">Card Number</label>
           <div class="register__check">
             <input type="number" name="card_number" id="card_number" onkeyup="validateCardNumberAjax()">
-            <div id="status_card_number"><img src="../assets/img/checklist-orange.png"/></div>
+            <div id="status_card_number"><img src="../assets/img/close.png"/></div>
           </div>
         </div>
         <div class="register__input">
