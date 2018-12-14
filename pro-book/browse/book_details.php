@@ -50,22 +50,31 @@
       </div>  
       ";
     ?>
-    <div class="detail__order">
-      <h1 class="detail__order-title blue-dark">Order</h1>
-      <div class="detail__order-number">
-        <p class="">Jumlah : </p>
-        <select id="total-order">
-          <?php 
-            for($i = 1; $i <= 5; $i++) { echo "<option value='{$i}'>{$i}</option>"; }
-          ?>
-        </select>
-      </div>
-      <div class="detail__order-button">
-        <button 
-          class="blue-medium-background hover_lightBlue button_up" 
-          onclick="orderBook(<?php echo $_COOKIE['id'] ?>, <?php echo $book_id ?>)">Order</button>
-      </div>
-    </div>
+    <?php
+        if ($book->price == -1) {
+          echo "<p>Buku tidak dijual</p>";
+        } else {
+          echo "<div class='detail__order'>
+        <h1 class='detail__order-title blue-dark'>Order</h1>
+        <div class='detail__order-number'>
+          <p class=''>Jumlah : </p>
+          <select id='total-order'>
+            "
+    ?>
+
+    <?php 
+      for($i = 1; $i <= 5; $i++) { echo "<option value='{$i}'>{$i}</option>"; }
+    ?>
+
+    <?php echo "
+          </select>
+        </div>
+        <div class='detail__order-button'>
+<button class='blue-medium-background hover_lightBlue button_up' onclick='orderBook({$_COOKIE['id']}, '<{$book_id}')'>Order</button>
+        </div>
+      </div>";
+        }
+    ?>    
     <div class="detail__reviews">
       <h1 class="detail__reviews-title blue-dark">Reviews</h1>
       <?php
