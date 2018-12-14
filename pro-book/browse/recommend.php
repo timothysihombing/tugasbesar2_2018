@@ -21,7 +21,7 @@
       <div class="search__form-row">
         <input 
           class="search__form-input" id="search__form-input" 
-          type="text" name="search" placeholder="Input categories..."
+          type="text" name="search" placeholder="Input categories terms..."
           ng-model='searchvalue'
         > 
         <a href="/browse/index.php">Search Book</a>
@@ -35,24 +35,24 @@
             <h1 class="search-result__title orange">Search Result</h1>
             <h1 class="search-result__found">Found {{books.length}} result(s)</h1>
           </div>
-          <div class="search-result__items" ng-repeat = "y in books">
+          <div class="search-result__items" ng-repeat = "x in books">
           <!-- <h1 class="search-result__title orange">Search Result</h1> -->
 
-            <div id="item-{{y['id']}}" class='search-result__item'>
+            <div id="item-{{x['id']}}" class='search-result__item'>
               <div class='search-result__item-content'>
-                <img src="{{y['imageUrl']}}" alt='item' class='search-result__item-img'>
+                <img src="{{x['imageUrl']}}" alt='item' class='search-result__item-img'>
                 <div class='search-result__item-body'>
-                  <h3 class='search-result__item-title orange'>{{y['title']}}</h3>
+                  <h3 class='search-result__item-title orange'>{{x['title']}}</h3>
                   <h5 class='search-result__item-subtitle'>
-                  {{y['authors'][0]}}
+                  {{x['authors'][0]}}
                   </h5>
                     <p class='search-result__item-desc'>
-                    {{y['categories'][0]}}
+                    {{x['categories'][0]}}
                     </p>
                 </div>
               </div>
               <button class='search-result__detail hover_lightBlue button_up'>
-                <a href="/browse/book_details.php?book={{y['id']}}">Detail</a>
+                <a href="/browse/book_details.php?book={{x['id']}}">Detail</a>
               </button>
             </div>
         </div>

@@ -8,10 +8,10 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="G:/Work/Java/Book-WS/lib/commons-io-2.6/commons-io-2.6.jar"/>
-	<classpathentry kind="lib" path="G:/Work/Java/Book-WS/lib/org.json/json-20180813.jar"/>
-	<classpathentry kind="lib" path="G:/Work/Java/Book-WS/lib/mysql-connector-java-8.0.13/mysql-connector-java-8.0.13.jar"/>
-	<classpathentry kind="lib" path="G:/Work/Java/Book-WS/lib/com.google/gson-2.8.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/PHP/tugasbesar2_2018/webservice-book/lib/com.google/gson-2.8.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/PHP/tugasbesar2_2018/webservice-book/lib/commons-io-2.6/commons-io-2.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/PHP/tugasbesar2_2018/webservice-book/lib/mysql-connector-java-8.0.13/mysql-connector-java-8.0.13.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/PHP/tugasbesar2_2018/webservice-book/lib/org.json/json-20180813.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 8.5/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

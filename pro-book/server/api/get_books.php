@@ -16,6 +16,7 @@
     // $response = $client->recommendBook($request_param);
     $response = $client->searchBook($request_param);
     $books = json_decode($response);
+    // print_r($books);
 
     echo ($response);
   } 

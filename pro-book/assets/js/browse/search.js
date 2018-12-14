@@ -16,8 +16,10 @@ app.controller('searchcon', function($scope, $http){
   $scope.searchvalue = null;
   $scope.search = function(){
     //showResult();
+   
     $scope.books = null;
     value = $scope.searchvalue.replace(/\s+/g, '+');
+    // $scope.showLoader = true;
     //showLoader();
     url = "../server/api/get_books.php?search=" + value;
     console.log("test");
@@ -25,6 +27,7 @@ app.controller('searchcon', function($scope, $http){
       .then(function (response) {
         document.getElementById('search-result').style.display = 'block'
         //hideLoader();
+       // $scope.showLoader = false;
         console.log($scope.books);
         if ($scope.books == null) {
           console.log("MASOKKKK PAK EKOOO!!!");

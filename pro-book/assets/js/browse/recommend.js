@@ -32,6 +32,7 @@ app.controller('recommendcon', function($scope, $http){
           //showNoResult();
         }
         $scope.books = response.data;
+        console.log($scope.books);
       })
   };
 });
