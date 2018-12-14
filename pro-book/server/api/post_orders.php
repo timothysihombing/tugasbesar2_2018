@@ -9,6 +9,23 @@
   $comment = $body->comment;
   $jumlah = $body->jumlah;
   
+  $post_ordersb_query = "INSERT books (user_id, book_id, rating, comment, jumlah) VALUES({$user_id}, {$book_id}, {$rating}, \"{$comment}\", {$jumlah})";
+  $post_ordersb = $link->query($post_ordersb_query);
+
+  if ($post_ordersb){
+    $get_orders_query = "SELECT order_id FROM books ORDER BY order_id DESC";
+    $orders = $link->query($get_orders_query);
+    $order_id;
+    while($row = $orders->fetch_assoc()) {
+      $order_id = $row["order_id"];
+      break;
+    }
+
+    echo $order_id;
+  } else {
+    echo 0;
+  }
+
   $post_orders_query = "INSERT orders (user_id, book_id, rating, comment, jumlah) VALUES({$user_id}, {$book_id}, {$rating}, \"{$comment}\", {$jumlah})";
   $post_orders = $link->query($post_orders_query);
 

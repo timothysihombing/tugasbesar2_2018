@@ -94,7 +94,12 @@ function validateEmailAjax() {
         })
             .then(res => res.json())
             .then(statusNumber => {
-                if (statusNumber == 1) {
+                let isEmailValid = true;
+            
+                const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                if (!re.test(email.value.toLowerCase())) isEmailValid = false
+
+                if (statusNumber == 1 && isEmailValid) {
                     status.innerHTML = "<img src=\"../assets/img/checklist-orange.png\"/>";
                     isEmailValid = true;
                 }
